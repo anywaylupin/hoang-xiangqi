@@ -16,48 +16,48 @@
     </header>
 
     <main class="main-wrapper">
-      <section class="board-section">
+      <section class="left column">
         <div class="status-box">
-          <strong>Status:</strong>
-          <div id="status" class="status-display">
-            <img src="img/red-general.png" alt="Red General" />
-            <span class="turn red">Red turn</span>
+          <div class="status-text">
+            <strong>Status:</strong>
+            <span id="status" class="turn red">Red turn</span>
+          </div>
+          <div class="status-display">
+            <img id="status-img" src="img/xiangqipieces/wikimedia/rK.svg" alt="Red King" />
           </div>
         </div>
         <div id="myBoard" class="board"></div>
       </section>
 
-      <section class="info-section">
-        <div class="history-box">
-          <strong>Move History:</strong>
-          <div class="history-table-wrapper">
-            <table id="history-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Red</th>
-                  <th>Black</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <section class="right column">
+        <strong>Move History:</strong>
+        <div class="history-table-wrapper">
+          <table id="history-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Red</th>
+                <th>Black</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
     </main>

@@ -1,6 +1,7 @@
 let board = null;
 const game = new Xiangqi();
 const $status = $('#status');
+const $statusImg = $('#status-img')[0];
 const $historyTableBody = $('#history-table tbody');
 
 function removeHighlights() {
@@ -47,8 +48,15 @@ function onSnapEnd() {
 }
 
 function updateStatus() {
-  const moveColor = game.turn() === 'r' ? 'Red' : 'Black';
+  const turn = game.turn();
+  const moveColor = turn === 'r' ? 'Red' : 'Black';
+
   $status.text(`${moveColor} turn`);
+  $status.removeClass('red');
+  $status.removeClass('black');
+  $status.addClass(moveColor.toLowerCase());
+  $statusImg.src = `img/xiangqipieces/wikimedia/${turn}K.svg`;
+  $statusImg.alt = `${moveColor} King`;
 }
 
 function updateHistory() {
