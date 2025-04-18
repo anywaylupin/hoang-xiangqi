@@ -96,6 +96,10 @@ button {
   .right {
     min-height: 50dvh;
   }
+
+  #history-table {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 600px) {
