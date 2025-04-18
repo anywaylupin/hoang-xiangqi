@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Prevent both vertical and horizontal scrolling */
+  user-select: none;
 }
 
 main {
@@ -20,6 +21,7 @@ main {
   padding: 1rem;
   gap: 1.5rem;
   overflow: hidden; /* Prevent any overflow within main */
+  user-select: none;
 }
 
 button {
@@ -30,6 +32,12 @@ button {
   cursor: pointer;
   border-radius: 8px;
   transition: background-color 0.3s, transform 0.2s ease;
+  user-select: none;
+}
+
+img {
+  user-select: none;
+  object-fit: contain;
 }
 
 .page-header {
