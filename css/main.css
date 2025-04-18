@@ -61,7 +61,7 @@ button {
   justify-content: space-evenly;
 }
 
-.status-box {
+.turn-box {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -103,8 +103,8 @@ button {
   }
 }
 
-/* Status */
-.status-text {
+/* turn */
+.turn-text {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -119,7 +119,7 @@ button {
   color: #000;
 }
 
-.status-display img {
+.turn-display img {
   width: 24px;
   height: 24px;
 }

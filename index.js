@@ -14,8 +14,8 @@ const game = new Xiangqi();
 const board = Xiangqiboard('myBoard', config);
 
 // Truy xuất các phần tử DOM
-const $status = $('#status');
-const $statusImg = $('#status-img')[0];
+const $turn = $('#turn');
+const $turnImg = $('#turn-img')[0];
 const $historyTableBody = $('#history-table tbody');
 const $reset = $('#btn-reset');
 const $undo = $('#btn-undo');
@@ -79,6 +79,7 @@ function onDragStart(source, piece) {
 // Khi thả quân cờ
 function onDrop(source, target) {
   removeHighlights();
+
   const move = game.move({ from: source, to: target });
   if (!move) return 'snapback';
 
@@ -106,14 +107,32 @@ function onSnapEnd() {
 
 // Cập nhật trạng thái lượt chơi
 function updateStatus() {
-  const turn = game.turn();
+  const turn = game.turn(); // 'r' or 'b'
   const moveColor = turn === 'r' ? 'Đỏ' : 'Đen';
   const colorClass = turn === 'r' ? 'red' : 'black';
 
-  $status.text(`Bên ${moveColor}`);
-  $status.removeClass('red black').addClass(colorClass);
-  $statusImg.src = `img/xiangqipieces/wikimedia/${turn}K.svg`;
-  $statusImg.alt = moveColor;
+  let statusText = '';
+
+  // ⚠️ Kiểm tra các trạng thái kết thúc ván
+  if (game.in_checkmate()) {
+    const winner = turn === 'r' ? 'Đen' : 'Đỏ'; // Bên bị chiếu hết là thua
+    statusText = `Chiếu hết! Bên ${winner} thắng!`;
+  } else if (game.in_stalemate()) {
+    statusText = 'Hết nước đi. Hòa cờ!';
+  } else if (game.in_draw()) {
+    statusText = 'Ván cờ hòa!';
+  } else if (game.in_threefold_repetition()) {
+    statusText = 'Hòa do lặp lại nước đi 3 lần!';
+  } else if (game.in_check()) {
+    statusText = `Bên ${moveColor} đang bị chiếu!`;
+  } else {
+    statusText = `Bên ${moveColor}`;
+  }
+
+  $turn.text(statusText);
+  $turn.removeClass('red black').addClass(colorClass);
+  $turnImg.src = `img/xiangqipieces/wikimedia/${turn}K.svg`;
+  $turnImg.alt = moveColor;
 }
 
 // Cập nhật bảng lịch sử
