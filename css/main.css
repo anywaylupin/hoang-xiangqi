@@ -36,6 +36,7 @@ button {
 }
 
 img {
+  pointer-events: none;
   user-select: none;
   object-fit: contain;
 }
