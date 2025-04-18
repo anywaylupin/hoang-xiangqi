@@ -1,49 +1,27 @@
-===== id
-5003
-
-===== Name
-Highlight Legal Moves
-
-===== Description
-Use the <code class="js plain"><a href="docs.html#config:onMouseoverSquare">onMouseoverSquare</a></code> and <code class="js plain"><a href="docs.html#config:onMouseoutSquare">onMouseoutSquare</a></code> events to highlight legal squares.
-
-===== CSS
-.highlight {
-  box-shadow: inset 0 0 3px 3px white;
-}
-
-===== HTML
-<div id="myBoard" style="width: 450px"></div>
-
-===== JS
-// NOTE: this example uses the xiangqi.js library:
-// https://github.com/lengyanyu258/xiangqi.js
-
 let board = null;
 let game = new Xiangqi();
 
-function removeGreySquares () {
+function removeGreySquares() {
   $('#myBoard .square-2b8ce').removeClass('highlight');
 }
 
-function greySquare (square) {
+function greySquare(square) {
   let $square = $('#myBoard .square-' + square);
 
   $square.addClass('highlight');
 }
 
-function onDragStart (source, piece) {
+function onDragStart(source, piece) {
   // do not pick up pieces if the game is over
   if (game.game_over()) return false;
 
   // or if it's not that side's turn
-  if ((game.turn() === 'r' && piece.search(/^b/) !== -1) ||
-      (game.turn() === 'b' && piece.search(/^r/) !== -1)) {
+  if ((game.turn() === 'r' && piece.search(/^b/) !== -1) || (game.turn() === 'b' && piece.search(/^r/) !== -1)) {
     return false;
   }
 }
 
-function onDrop (source, target) {
+function onDrop(source, target) {
   removeGreySquares();
 
   // see if the move is legal
@@ -56,7 +34,7 @@ function onDrop (source, target) {
   if (move === null) return 'snapback';
 }
 
-function onMouseoverSquare (square, piece) {
+function onMouseoverSquare(square, piece) {
   // get list of possible moves for this square
   let moves = game.moves({
     square: square,
@@ -75,11 +53,11 @@ function onMouseoverSquare (square, piece) {
   }
 }
 
-function onMouseoutSquare (square, piece) {
+function onMouseoutSquare(square, piece) {
   removeGreySquares();
 }
 
-function onSnapEnd () {
+function onSnapEnd() {
   board.position(game.fen());
 }
 
