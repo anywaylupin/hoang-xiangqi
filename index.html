@@ -7,18 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono" />
-    <link rel="stylesheet" href="css/website.css" />
+    <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/xiangqiboard.min.css" />
   </head>
   <body class="homepage">
-    <main class="wrapper">
-      <div id="myBoard" style="width: 450px"></div>
-      <span>Status:</span>
-      <div id="status"></div>
-      <span>FEN:</span>
-      <div id="fen"></div>
-      <span>PGN:</span>
-      <div id="pgn"></div>
+    <header class="page-header">
+      <h1>Hoang Xiangqi</h1>
+    </header>
+
+    <main class="main-wrapper">
+      <section class="board-section">
+        <div class="status-box">
+          <strong>Status:</strong>
+          <div id="status" class="status-display">
+            <img src="img/red-general.png" alt="Red General" />
+            <span class="turn red">Red turn</span>
+          </div>
+        </div>
+        <div id="myBoard" class="board"></div>
+      </section>
+
+      <section class="info-section">
+        <div class="history-box">
+          <strong>Move History:</strong>
+          <div class="history-table-wrapper">
+            <table id="history-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Red</th>
+                  <th>Black</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="js/jquery.min.js"></script>
