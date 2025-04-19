@@ -107,30 +107,42 @@ function onSnapEnd() {
 
 // Cập nhật trạng thái lượt chơi
 function updateStatus() {
-  const turn = game.turn(); // 'r' or 'b'
-  const moveColor = turn === 'r' ? 'Đỏ' : 'Đen';
-  const colorClass = turn === 'r' ? 'red' : 'black';
+  const turn = game.turn(); // 'r' hoặc 'b'
+  const isRedTurn = turn === 'r';
+  const moveColor = isRedTurn ? 'Đỏ' : 'Đen';
+  let colorClass = isRedTurn ? 'red' : 'black';
 
   let statusText = '';
 
-  // ⚠️ Kiểm tra các trạng thái kết thúc ván
-  if (game.in_checkmate()) {
-    const winner = turn === 'r' ? 'Đen' : 'Đỏ'; // Bên bị chiếu hết là thua
-    statusText = `Chiếu hết! Bên ${winner} thắng!`;
-  } else if (game.in_stalemate()) {
-    statusText = 'Hết nước đi. Hòa cờ!';
-  } else if (game.in_draw()) {
-    statusText = 'Ván cờ hòa!';
-  } else if (game.in_threefold_repetition()) {
-    statusText = 'Hòa do lặp lại nước đi 3 lần!';
-  } else if (game.in_check()) {
-    statusText = `Bên ${moveColor} đang bị chiếu!`;
-  } else {
-    statusText = `Bên ${moveColor}`;
+  // ⚠️ Kiểm tra trạng thái kết thúc ván bằng switch
+  switch (true) {
+    case game.in_checkmate():
+      colorClass = isRedTurn ? 'black' : 'red';
+      statusText = `Chiếu hết! Bên ${isRedTurn ? 'Đen' : 'Đỏ'} thắng!`;
+      break;
+    case game.in_stalemate():
+      colorClass = '';
+      statusText = 'Hết nước đi. Hòa cờ!';
+      break;
+    case game.in_draw():
+      colorClass = '';
+      statusText = 'Ván cờ hòa!';
+      break;
+    case game.in_threefold_repetition():
+      colorClass = '';
+      statusText = 'Hòa do lặp lại nước đi 3 lần!';
+      break;
+    case game.in_check():
+      statusText = `Bên ${moveColor} đang bị chiếu!`;
+      break;
+    default:
+      statusText = `Bên ${moveColor}`;
   }
 
   $turn.text(statusText);
-  $turn.removeClass('red black').addClass(colorClass);
+  $turn.removeClass('red black');
+  if (colorClass) $turn.addClass(colorClass);
+
   $turnImg.src = `img/xiangqipieces/wikimedia/${turn}K.svg`;
   $turnImg.alt = moveColor;
 }
